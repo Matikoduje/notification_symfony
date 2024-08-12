@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Access Denied{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+        <div class="text-center">
+            <h1>Access Denied</h1>
+            <p>You do not have the necessary permissions to view this page.</p>
+            {% if not app.user %}
+                <p>Please log in to continue.</p>
+                <a href="{{ path('app_login') }}" class="btn btn-primary">Log in</a>
+            {% else %}
+                <p>Your account is not authorized. Please check your email and authorize your account.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

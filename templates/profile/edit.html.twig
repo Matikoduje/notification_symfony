@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="w-100" style="max-width: 400px;">
+            <h1 class="mb-4 text-center">Edit Profile</h1>
+            {% for flash_success in app.flashes('success') %}
+                <div class="alert alert-success" role="alert">{{ flash_success }}</div>
+            {% endfor %}
+
+            {% for flash_error in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+            {% endfor %}
+
+            {{ form_start(profileForm, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+
+            <div class="form-group">
+                {{ form_label(profileForm.email) }}
+                {{ form_widget(profileForm.email, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(profileForm.email) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(profileForm.phoneNumber) }}
+                <div class="d-flex">
+                    {{ form_widget(profileForm.countryPrefix, {'attr': {'class': 'form-control mr-2'}}) }}
+                    {{ form_widget(profileForm.phoneNumber, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                {{ form_errors(profileForm.countryPrefix) }}
+                {{ form_errors(profileForm.phoneNumber) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(profileForm.plainPassword, 'New Password') }}
+                {{ form_widget(profileForm.plainPassword, {'attr': {'class': 'form-control', 'autocomplete': 'new-password'}}) }}
+                {{ form_errors(profileForm.plainPassword) }}
+            </div>
+
+            <div class="form-group form-check">
+                {{ form_widget(profileForm.smsNotificationConsent, {'attr': {'class': 'form-check-input'}}) }}
+                {{ form_label(profileForm.smsNotificationConsent, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                {{ form_errors(profileForm.smsNotificationConsent) }}
+            </div>
+
+            <div class="form-group form-check">
+                {{ form_widget(profileForm.emailNotificationConsent, {'attr': {'class': 'form-check-input'}}) }}
+                {{ form_label(profileForm.emailNotificationConsent, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                {{ form_errors(profileForm.emailNotificationConsent) }}
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Save changes</button>
+            {{ form_end(profileForm) }}
+        </div>
+    </div>
+{% endblock %}

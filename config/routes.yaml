@@ -1,0 +1,40 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+app_home:
+    path: /
+    controller: App\Controller\HomeController::index
+    methods: GET
+    
+app_edit_profile:
+    path: /profile/edit
+    controller: App\Controller\ProfileController::editProfile
+    methods: [GET, POST]
+
+app_register:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+    methods: [GET, POST]
+
+app_verify_email:
+    path: /verify/email
+    controller: App\Controller\RegistrationController::verifyUserEmail
+    methods: [GET]
+
+app_login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+    methods: [GET, POST]
+
+app_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+    methods: [GET]
+
+app_notify:
+    path: /send-notification/{type}
+    controller: App\Controller\NotificationController::sendNotification
+    methods: [POST]

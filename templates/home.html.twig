@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block meta %}
+    {{ parent() }}
+    <meta name="csrf-token" content="{{ csrf_token('send-notification') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/js/notification.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-column justify-content-between align-items-center" style="height: 100vh; width: 100%;">
+        <div class="d-flex justify-content-center align-items-center" style="height: 50vh; width: 100%;">
+            <div class="text-center">
+                <h1>Welcome!</h1>
+                {% if app.user %}
+                    <p>You are logged in.</p>
+                {% else %}
+                    <p>Please log in to access the content.</p>
+                {% endif %}
+            </div>
+        </div>
+        {% if app.user %}
+            <hr style="width: 100%; border: 1px solid black; margin: 0;">
+            <div class="d-flex flex-column align-items-center" style="height: 50vh; width: 100%; justify-content: center; background-color: #f0f0f0;">
+                <h2>Test Notifications</h2>
+                <div class="d-flex justify-content-around w-100" style="margin-top: 20px;">
+                    <div class="text-center" style="flex: 0 0 33.33%;">
+                        <label for="sms-button">Test SMS Notification</label><br>
+                        <button id="sms-button" class="btn btn-primary">Send</button>
+                    </div>
+                    <div class="text-center" style="flex: 0 0 33.33%;">
+                        <label for="email-button">Test Email Notification</label><br>
+                        <button id="email-button" class="btn btn-primary">Send</button>
+                    </div>
+                    <div class="text-center" style="flex: 0 0 33.33%;">
+                        <label for="all-button">Test All Notification Channels</label><br>
+                        <button id="all-button" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
